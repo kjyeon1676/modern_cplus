@@ -7,8 +7,9 @@ void foo(int* p)
 
 template<typename T>
 void forward_foo(T arg)	// int arg = 0 로 T가 결정됩니다.
-{
-	foo(arg);			// foo(arg)
+{						// foo(arg) 는 에러
+						// std::nullptr_t arg = nullptr;
+	foo(arg);			// foo(arg) 는 ok.. 
 }
 
 int main()
