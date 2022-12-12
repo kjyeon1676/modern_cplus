@@ -6,8 +6,9 @@ class Meter
 public:
 	Meter(int n) : value(n) {}
 };
-
-Meter operator""m(unsigned long long value)
+// _ 가 붙지 않는 모양은 모두 C++ 표준만 사용하도록 예약되었습니다.
+// 개발자가 직접 만들려면 꼭 _로 시작해야 합니다.
+Meter operator""_m(unsigned long long value)
 {
 	Meter m(static_cast<int>(value));
 	return m;
@@ -15,7 +16,7 @@ Meter operator""m(unsigned long long value)
 
 int main()
 {
-	Meter m1 = 5m;	// Meter operator""m(5)
+	Meter m1 = 5_m;	// Meter operator""m(5)
 
 
 	//	Gram  g1 = 5gram;
