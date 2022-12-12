@@ -4,6 +4,7 @@ template<typename T>
 class Base
 {
 public:
+	// "arg" 가 const 입니다.
 	virtual void foo(const T arg)
 	{
 		std::cout << "Base foo" << std::endl;
@@ -12,8 +13,17 @@ public:
 class Derived : public Base<int*>
 {
 public:
-	// override 붙이지 말고, foo 를 재정의 해서 "Derived foo" 출력하세요
+	// "arg" 가 const 가 아니라, "arg"를 따라가면 const 가 있다는것
+	//virtual void foo(const int* arg) override 
+
+	// 아래 코드가 "arg" 가 const 인 코드 입니다.
+	virtual void foo(int* const arg) override
+	{
+		std::cout << "Derived foo" << std::endl;
+	}
 };
+
+
 int main()
 {
 	Base<int*>* p = new Derived;
