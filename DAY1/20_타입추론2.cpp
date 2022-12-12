@@ -47,4 +47,13 @@ int main()
 	foo(c);		// T=int
 	foo(r);		// T=int
 	foo(cr);	// T=int
+
+	// 핵심 : 인자가 가진 const 속성만 제거됩니다.
+	
+	const char* name = "hello";
+
+	foo(name); // T = const char* 
+
+	const char* const name2 = "hello";
+	foo(name2); //T = const char*
 }
