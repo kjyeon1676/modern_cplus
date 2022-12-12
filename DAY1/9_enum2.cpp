@@ -1,9 +1,7 @@
 
 // C++98 enum
 // enum DAYOFWEEK { sum = 0, mon = 1 };
-
-// C++11 의 새로운 enum
-enum class DAYOFWEEK { sum = 0, mon = 1 };
+enum class DAYOFWEEK { sum = 0, mon = 1 }; //  C++11 의 새로운 enum
 
 //void foo(int dayofaweek) {} // 모든 정수를 받을수 있게 된다.
 
