@@ -44,3 +44,6 @@ int main()
 	object_set_zero(&aaa); // ???
 	
 }
+// static_assert :  프로그램에 기능, 성능에 대한 도구가 아님
+//					안전한 코드를 작성하기 위한 도구..
+//                  
