@@ -26,4 +26,21 @@ int main()
 
 	// auto sz1 = v.size(); // v가 컨테이너만 가능
 	auto sz2 = std::size(v); // v가 컨테이너 또는 raw array 도 가능
+
+	//------------------------------
+	// C++20 에서 새로운 begin 이 등장합니다.
+	
+	// 기존 begin 의 문제점.
+	// => 컨테이너가 임시객체인 경우에 대한 고려가 되어있지 않다.
+	auto p3 = std::begin( std::vector<int>{1, 2, 3} );
+	int n = *p3; // runtime error
+
+
+	// C++20 의 새로운 begin 은
+	// => 임시객체가 인자로 오는 경우
+	// => Dangling iterator 라는 개념을 반환합니다.
+	// => Dangling iterator 는 *연산이 되지 않습니다.
+	auto p4 = std::ranges::begin(std::vector<int>{1, 2, 3});
+
+	int n = *p4; // compile error
 }
