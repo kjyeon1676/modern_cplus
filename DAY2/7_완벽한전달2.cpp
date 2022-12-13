@@ -10,6 +10,8 @@ void goo(int& a) { a = 100; }
 
 // 해결책 : int&, int&& 버전을 따로 제공해야 한다!
 
+// ==> 아래 코드는 한가지 문제점이 있습니다. "완벽한전달3.cpp" 참고
+
 template<typename F> void chronometry(F f, int& arg)
 {
 	f(arg);	
