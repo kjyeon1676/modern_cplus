@@ -4,6 +4,12 @@
 void foo(int a)  {}
 void goo(int& a) { a = 100; }
 
+// forwarding : 받은 인자를 다른 함수에 전달하는 것
+// 
+// perfect forwarding(완벽한 전달)
+// => 받은 인자를 다른 함수에 전달할때 
+//    어떠한 변환도 없이 원본 그대로 전달하는 기술
+
 // 인자로 전달된 함수의 성능(수행시간)을 측정하는 함수
 template<typename F, typename T>
 void chronometry(F f, T arg)
