@@ -15,4 +15,5 @@ int main()
 {
 	hoo(10); // ok
 	chronometry(hoo, 10); // error.. 왜??? 에러일까요 ?
+						  // => "이유와 해결책은 4번" 에서
 }
