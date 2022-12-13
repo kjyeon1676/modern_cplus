@@ -12,7 +12,7 @@ void goo(int& a) { a = 100; }
 
 // 인자로 전달된 함수의 성능(수행시간)을 측정하는 함수
 template<typename F, typename T>
-void chronometry(F f, T arg)
+void chronometry(F f, const T& arg)
 {
 	// 시간을 구한후 보관
 	f(arg);	// 함수 호출
