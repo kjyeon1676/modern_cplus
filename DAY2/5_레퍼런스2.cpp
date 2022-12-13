@@ -31,6 +31,13 @@ int main()
 
 	foo(r2);					// foo(int&)  r2는 lvalue  이므로
 	foo(static_cast<int&&>(r2));// foo(int&&) r2를 rvalue 로 캐스팅
+		//=> 이미 r2의 타입이 int&& 인데, 다시 int&& 로 캐스팅하는 것은
+		//   아무 의미 없지 않나요 ?
+		//=> 이 코드는 "타입 캐스팅"이 아닌 "value 의 속성을 변경하는 캐스팅"
+		//   이라고 정의 되어 있습니다.
+		//   lvalue => rvalue 로 변경할때 사용합니다.
+	
+
 }
 
 
