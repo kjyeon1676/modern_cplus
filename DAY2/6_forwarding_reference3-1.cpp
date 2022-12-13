@@ -4,10 +4,30 @@
 // 
 // T& : 임의 타입의 lvalue 만 받겠다는 의미
 
+// T&&  
+// 1. 임의 타입의 lvalue, rvalue 를 모두 받겠다는 의미!
+// 2. "모두 받는 다는 의미" 는 "받을수 있는 함수를 생성" 한다는것
+// 3. 생성된 함수는 모두 "call by reference" 임. 
+// 4. lvalue 와 rvalue 보낼때 T와 T&&의 타입을 완벽히 이해하고 외워야 합니다.
+
+// lvalue 전달 : f4(n); // T=int&   T&&=int&     f4(int&)
+// rvalue 전달 : f4(5); // T=int    T&&=int&&    f4(int&&)
+
+
+// int&  : lvalue reference
+// int&& : rvalue reference
+// T&    : lvalue reference
+// T&&   : forwarding reference 가 공식 이름
+//         universal referfence 를 사용하자고 effective-C++책에서 제안
+
+
+
+
 
 template<typename T> void f4(T&& a)
 {
 }
+
 
 int main()
 {
