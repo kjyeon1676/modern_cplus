@@ -29,6 +29,11 @@ void chronometry(F f, T&& arg)
 int main()
 {
 	int n = 0;
-	chronometry(foo, 10);
-	chronometry(goo, n);
+	chronometry(foo, 10);	// T=int	T&&=int&&	
+							// chronometry(F, int&&) 持失
+							// static_cast<int&&>(arg)
+
+	chronometry(goo, n);	// T=int&		T&&=int&
+							// chronometry(F, int&) 持失
+							// static_cast<int&>(arg)
 }
