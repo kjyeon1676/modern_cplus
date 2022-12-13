@@ -23,7 +23,14 @@ void chronometry(F f, int&& arg)
 template<typename F, typename T>
 void chronometry(F f, T&& arg)
 {
-	f(static_cast<T&&>(arg));
+	// 아래 캐스팅은  chronometry 의 2번째 인자로
+
+	// rvalue 를 보내면 rvalue 로 캐스팅하게 되고
+	// lvluae 를 보내면 lvalue 로 캐스팅하게 됩니다.
+	//f(static_cast<T&&>(arg));
+
+	f( std::forward<T>(arg) );	// 위 캐스팅과 동일한 일을 하는
+								// C++ 표준 함수
 }
 
 int main()
