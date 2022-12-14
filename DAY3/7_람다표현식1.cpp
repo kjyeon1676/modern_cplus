@@ -26,8 +26,23 @@ int main()
 
 
 	// 4. C++11 부터는 람다 표현식 사용가능
+	
+	std::sort( v.begin(), v.end(), [](int a, int b) { return a < b; }); 
 
-	std::sort(v.begin(), v.end(), [](int a, int b) { return a < b; }); 
+	// 람다 표현식의 원리... 
+	// 컴팡일러가 함수 객체를 생성하는 것. 
+
+	// 위 한줄을 보고 컴파일러가 아래 코드를 생성..
+	class CompilerGeneratedName
+	{
+	public:
+		inline bool operator()(int a, int b) const
+		{
+			return a < b;
+		}
+	};
+	std::sort(v.begin(), v.end(), CompilerGeneratedName() );
+
 }
 
 
