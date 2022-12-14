@@ -19,8 +19,19 @@ public:
 
 	// C++11 부터 move 를 지원하는 setter 를 만들려면
 	// => 2개의 함수를 제공해야 합니다.
-	void set_name(const std::string& n) { name = n; }
-	void set_name(std::string&& n)      { name = std::move(n); }
+//	void set_name(const std::string& n) { name = n; }
+//	void set_name(std::string&& n)      { name = std::move(n); }
+
+	// move 지원 setter 만들기 #2
+	// T&& 를 사용하면 위 2개 함수를 자동생성할수 있습니다.
+	template<typename T>
+	void set_name(T&& n)
+	{
+		// 다음중 맞는 것은 ?
+	//	name = n;			// 항상 복사
+	//	name = std::move(n);// 항상 move
+		name = std::forward<T>(n);
+	}
 };
 
 
