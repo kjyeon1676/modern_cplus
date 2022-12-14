@@ -21,7 +21,8 @@ int main()
 
 	auto p2 = std::find_if(v.begin(), v.end(), foo ); // C++98 스타일
 
-	auto p3 = std::find_if(v.begin(), v.end(),  ); // C++11 스타일
+	auto p3 = std::find_if(v.begin(), v.end(),  
+				[](int n) { return n % 3 == 0; }); // C++11 스타일
 
 }
 
