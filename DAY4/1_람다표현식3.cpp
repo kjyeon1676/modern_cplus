@@ -24,12 +24,18 @@ int main()
 
 	// 핵심 3. 람다 표현식은 임시객체 rvalue 입니다.
 
-	auto a1 = [](int a, int b) { return a + b; };
+	auto a1 = [](int a, int b) { return a + b; }; // ok
 
-	auto& a2 = [](int a, int b) { return a + b; };
+	auto& a2 = [](int a, int b) { return a + b; }; // error
 	
-	const auto& a3 = [](int a, int b) { return a + b; };
+	const auto& a3 = [](int a, int b) { return a + b; }; // ok
 	
-	auto&& a4 = [](int a, int b) { return a + b; };
+	auto&& a4 = [](int a, int b) { return a + b; }; // ok
+	// T&& 와 같습니다. 따라서, forwarding reference 
+
+	// 위 4줄에서는 1번이 가장 좋습니다.
+//	CompilerGeneratedName a1 = CompilerGeneratedName();
+		//  위 코드는 결국 아래 코드와 동일하게 됩니다.
+//	CompilerGeneratedName a1;
 }
 
