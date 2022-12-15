@@ -27,6 +27,7 @@ int main()
 	std::cout << typeid(n2).name() << std::endl;
 }
 
+
 template<typename T> void foo(T a)
 {
 	// remove_pointer 사용시 주의 사항
@@ -34,6 +35,6 @@ template<typename T> void foo(T a)
 	remove_pointer<int*>::type n1;
 			// => dependent name 아닙니다. typename 필요 없습니다.
 
-	remove_pointer<T>::type n2;
+	typename remove_pointer<T>::type n2;
 			// => 반드시 typename 적어야 합니다.
 }
