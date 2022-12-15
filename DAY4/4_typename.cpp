@@ -8,7 +8,7 @@ struct Test
 int Test::data = 0;
 int p = 0;
 
-template<typename T> void foo(T a)
+template<typename T> typename T::DWORD foo(T a)
 {
 	// 아래 코드에서 * 의 의미를 생각해 보세요
 //	Test::data  * p;	// 곱하기의 의미 ( 0 * 0 )
@@ -20,9 +20,18 @@ template<typename T> void foo(T a)
 	// 2. 타입 일수 있습니다.	: typedef 또는 using 등.. 
 
 	// 아래 코드를 생각해 보세요.. 
+	// 의존이름(dependent name)
+	// => "T::이름" 처럼 템플릿 인자에 의존한 이름
+	// => 컴파일러는 기본 적으로 "이름"을 "값으로 해석"
+	// => 의존이름을 값이 아닌 타입으로 해석되게 하려면 typename 필요
 	T::data  * p;
-	T::DWORD * p;
+	//T::DWORD * p; // error. 단 VC등에서 에러가 발생하지 않을수 있지마
+					// C++ 문법상 에러 입니다.
+	typename T::DWORD* p;
+
+	return 0;
 }
+
 
 
 
