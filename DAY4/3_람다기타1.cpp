@@ -24,6 +24,11 @@ public:
 
 		std::cout << data << std::endl; // 15
 
+
+		// C++17 부터 *this 캡쳐도 지원 합니다.
+		// => 이 경우는 "data=15" 처럼 수정하려고 하면 에러 입니다.
+		auto f2 = [*this](int a) { //data = 15; 
+									return a + data; }; 
 	}
 };
 
