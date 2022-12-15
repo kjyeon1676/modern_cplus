@@ -4,7 +4,12 @@
 struct Point
 {
 	int x, y;
+
+	Point() = default; // 이 코드는 있어도 생성자 는 trivial
+
+	Point(const Point& pt) : x(pt.x), y(pt.y) {}
 };
+
 
 template<typename T> 
 void copy_type(T* dst, T* src, std::size_t sz)
