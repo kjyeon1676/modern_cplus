@@ -33,6 +33,10 @@ template<typename T, int N> struct is_array< T[N] >
 	static constexpr int  size = N;
 };
 
+//template<typename T> void foo(T a)  // 이렇게 하면 안됩니다.
+									  // 배열을 값 타입으로 받으면 
+									  // 포인터로 받게 됩니다.
+									  // "타입 추론" 예제 참고..
 template<typename T> void foo(T& a)
 {
 	// T : int[3]
