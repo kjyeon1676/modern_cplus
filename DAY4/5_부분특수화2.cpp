@@ -34,6 +34,18 @@ template<> struct Object<int, short>
 	static void foo() { cout << "int, short" << endl; }
 };
 
+// Object<T, Object<U, V>>
+
+// primary template 의 타입 파라미터는 2개지만
+// 아래 처럼 부분특수화하게되면 타입 파라미터가 3개가 되게 됩니다.
+template<typename T, typename U, typename V> 
+struct Object<T, Object<U, V> >
+{
+	static void foo() { cout << "T, Object<U, V>" << endl; }
+};
+
+
+
 int main()
 {
 	// 아래 처럼 나오게 만들어 보세요.
