@@ -42,5 +42,9 @@ int main()
 	Object<int*, double> ::foo();// T*, U
 	Object<int,  int>::foo();    // T, T
 	Object<int, short>::foo();   // int, short
+
+	// 아래 처럼 출력되게 해 보세요
+	Object<int, Object<double, short>>::foo(); 
+					// T, Object<U,V>
 }
 
