@@ -10,21 +10,24 @@ void foo(double) {}
 // 좋지 않을까요 ?
 //void goo(가상함수가있는클래스들) {}
 //void goo(가상함수가없는클래스들) {}
-
+// std::enable_if_t<조건, 리턴타입> 인데.. 리턴타입이 void 라면 생략가능
 template<typename T>
-void goo(T arg)
+std::enable_if_t< std::is_polymorphic_v<T> > 
+goo(T arg)
 {
 	std::cout << "가상함수가 있는 타입" << std::endl;
 }
+// std::is_polymorphic_v<T> : 가상함수 유무를 조사
 template<typename T>
-void goo(T arg)
+std::enable_if_t< ! std::is_polymorphic_v<T> >
+goo(T arg)
 {
 	std::cout << "가상함수가 없는 타입" << std::endl;
 }
 class Object
 {
 public:
-	virtual void f() {}
+//	virtual void f() {}
 };
 int main()
 {
