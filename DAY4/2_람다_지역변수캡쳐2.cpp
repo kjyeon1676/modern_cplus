@@ -16,6 +16,16 @@ int main()
 	// => operator() 함수를 non-const 멤버 함수로 해달라는 지시어
 	auto f2 = [v1, v2](int a) mutable { v1 = 100; return a + v1 + v2; };
 
+	f2(30); // 이순간 "v1 = 100" 이 실행되는데..
+			// 여기서 v1은 지역변수는 아니고, 복사본 입니다.
+
+	std::cout << v1 << std::endl;
+
+	std::cout << sizeof(f2) << std::endl; // 8
+
+
+
+
 
 	/*
 	// 지역변수를 캡쳐했을때 원리
