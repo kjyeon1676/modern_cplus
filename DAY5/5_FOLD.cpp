@@ -16,8 +16,10 @@ template<typename ... Types>
 int Sum(Types ... args)
 {
 //	int s = (args + ...);     // (1 + ( 2 + 3) )
+//	int s = (... + args);     // ((1 + 2) + 3)
 
-	int s = (args + ... + 0); // (1 + ( 2 + ( 3 + 0) )
+//	int s = (args + ... + 0);    // (1 + ( 2 + ( 3 + 0) )
+	int s = (0    + ... + args); // (((0 + 1) + 2) + 3)
 
 	return s;
 }
