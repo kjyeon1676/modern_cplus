@@ -42,11 +42,17 @@ struct tuple_element<0, tuple<Types...> >
 	// 0번째 요소가 Types 안에 포함되어 있다.
 };
 */
+
 // 정답. 
 template<typename T, typename ... Types>
 struct tuple_element<0, tuple<T, Types...> >
 {
-	using type = T;
+	// tuple<T, Types...> 의 
+	// 0번째 요소의 타입 : T
+	// 0번째 요소를 저장하는 튜플 타입 : tuple<T, Types...>
+
+	using type = T;	
+	using tupleType = tuple<T, Types...>;
 };
 
 // 위처럼 N == 0 을 완성후에
@@ -54,7 +60,8 @@ struct tuple_element<0, tuple<T, Types...> >
 template<int N, typename T, typename ... Types>
 struct tuple_element<N, tuple<T, Types...> >
 {
-	using type = typename tuple_element<N - 1, tuple< Types...>>::type;
+	using type      = typename tuple_element<N-1, tuple< Types...>>::type;
+	using tupleType = typename tuple_element<N-1, tuple< Types...>>::tupleType;
 };
 
 
@@ -62,9 +69,12 @@ template<typename TP> void foo(TP& tp)
 {
 	// TP : tuple<int, double, char>
 
-	typename tuple_element<1, TP>::type n;
+	typename tuple_element<1, TP>::type n; // double. 요소의 타입
+	typename tuple_element<1, TP>::tupleType t; // 
+										// tuple<double, char>
 
 	std::cout << typeid(n).name() << std::endl; // double
+	std::cout << typeid(t).name() << std::endl; // double
 }
 
 
