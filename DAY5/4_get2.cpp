@@ -22,7 +22,16 @@ struct tuple<T, Types...> : public tuple< Types...>
 
 int main()
 {
-	tuple<int, double, short> t3(1, 3.4, 2);
+//	tuple<>
+//	tuple<		       short>					// 2 보관
+//	tuple<	   double, short>					// 3.4 보관
+	tuple<int, double, short> t3(1, 3.4, 2);	// 1 보관
+
+	std::cout << t3.value << std::endl; // 1
+
+	std::cout << t3.value << std::endl; // 3.4 나오게 해보세요
+
+	std::cout << t3.value << std::endl; // 2 나오게 해보세요.
 }
 
 
