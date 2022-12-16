@@ -16,15 +16,19 @@ template<typename ... Types> void foo(Types ... args)
 	// 1. 함수 호출의 () 안
 	// 2. {} 초기화 안 
 
-	int x[] = { printv(args)... };
-			//{ printv(E1), printv(E2), printv(E3) };
+	// args 의 요소 갯수가 0인 경우를 대비해서
+	// 1. 제일 앞에 더미 0을 주거나 
+	//int x[] = { 0, (printv(args), 0)... }; 
+			//{ (printv(E1), 0), (printv(E2),0), (printv(E3), 0) };
+			// {}
+
+	// 2. 
+	std::initializer_list<int> e = { (printv(args), 0)... };
 }
-
-
-
 
 int main()
 {
+//	foo();
 	foo(1, 2, 3);
 }
 
