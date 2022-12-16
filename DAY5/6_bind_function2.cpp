@@ -25,10 +25,17 @@ int main()
 
 	// C++11 에서 추가된 std::function 이 함수 포인터 보다
 	// 좋습니다.
+	// => std::bind() 결과를 보관할수 있습니다.
 	std::function<void(int)> f;
 
 	f = &f1;
 	f(10); // f1(10)
+
+	f = std::bind(&f2, 5, _1);
+	f(10); // f2(5, 10)
+
+	f = std::bind(&f4, ? );
+	f(10); // f4(6, 3, 10, 9); 처럼 동작하게 해보세요.
     
 }
 
