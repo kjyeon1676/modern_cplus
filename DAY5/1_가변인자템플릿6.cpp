@@ -6,13 +6,20 @@
 //        1번째 인자를 독립적인 이름을 사용
 
 void foo() {} // recursive 유사 코드의 종료를 위해서!!
+				// C++14 까지는 이렇게 했습니다.
+				// C++17 부터는 아래 main 처럼.. 
 
 template<typename T, typename ... Types>
 void foo(T value, Types ... args)
 {
-	std::cout << value << std::endl;
+	static int cnt = 0;
+	++cnt;
+	std::cout << value << " : " << cnt << std::endl; // cnt는 항상 1
 
-	foo(args...); // foo(3.4, 'A')
+	if constexpr (sizeof...(args) > 0)
+		foo(args...);
+
+//	foo(args...); // foo(3.4, 'A')
 				  // foo('A');
 				  // foo()
 }
