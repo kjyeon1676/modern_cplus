@@ -1,6 +1,7 @@
 #include <iostream>
 #include <algorithm>
 #include <functional>
+using namespace std::placeholders; // _1, _2 를 사용하기 위해
 
 // 4항 함수
 void foo( int a, int b, int c, int d)
@@ -17,7 +18,15 @@ int main()
 
     // 사용법 : std::bind( M항함수, M개인자)
 
-    std::bind(&foo, 1, 2, 3, 4) ();
+    std::bind(&foo, 1, 2, 3, 4) (); // 4항 => 0항 함수로 변경
     //|-----결과가 다시함수-----|
+
+
+    std::bind(&foo, 5, _1, 3, _2) (8, 9);   // foo( 5, 8, 3, 9)
+                                    // 4항 => 2항 함수
+
+
+    std::bind(&foo, ?, ?, ?, ? ) (9, 7, 5);   
+                // foo(7, 5, 8, 9) 의미가 되도록 ? 채워 보세요
 }
 
