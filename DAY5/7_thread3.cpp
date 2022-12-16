@@ -22,12 +22,23 @@ void foo()
 }
 */
 // 아래 코드가 좋은 코드 입니다.
+// => RAII 기술
+// => 생성자와 소멸자를 활용해서 "자원을 관리하는 기술"
 void foo()
 {
-	std::lock_guard<std::mutex> g(m);
+	{
+		std::lock_guard<std::mutex> g(m);
+				// 1. 지역변수 g 객체를 m 을 참조로 보관
+				// 2. g 생성자에서 m.lock() 수행
+				// 3. g 소멸자에서 m.unlock() 수행
 
-	shared_data = 200;
+		shared_data = 200;
+	}
+
+	//....
 }
+
+
 
 
 int main()
