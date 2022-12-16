@@ -14,8 +14,17 @@ template<typename T> struct result
 // 부분 특수화 기술을 사용해서 원하는 타입을 얻을수 있도록
 // 타입을 분할 합니다.
 // "int(int, double)" => "int" 와 나머지 요소들로 분할
+// 아래 부분 특수화의 문제는 인자가 2개인 경우만 됩니다.
+/*
 template<typename R, typename A1, typename A2> 
 struct result< R(A1, A2) >
+{
+	using type = R;
+};
+*/
+// 모든 함수의 반환 타입을 구하도록 범용적으로 해봅니다.
+template<typename R, typename ... Types>
+struct result< R(Types...) >
 {
 	using type = R;
 };
@@ -27,7 +36,7 @@ template<typename T> void foo(T& a)
 	// T : int(int, double)
 	typename result<T>::type n;		
 
-	cout << typeid(n).name() << endl; // int
+	std::cout << typeid(n).name() << std::endl; // int
 }
 
 int main()
